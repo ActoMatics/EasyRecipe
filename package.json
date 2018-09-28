@@ -1,0 +1,28 @@
+{
+  "name": "recipeit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ActoMatics/EasyRecipe.git"
+  },
+  "author": "Sarit Vakrat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ActoMatics/EasyRecipe/issues"
+  },
+  "homepage": "https://github.com/ActoMatics/EasyRecipe#readme",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4",
+    "save": "^2.3.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1"
+  }
+}
