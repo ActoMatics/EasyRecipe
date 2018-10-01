@@ -20,6 +20,7 @@
   "homepage": "https://github.com/ActoMatics/EasyRecipe#readme",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "axios": "^0.18.0",
     "idempotent-babel-polyfill": "^6.26.0-1"
   },
   "devDependencies": {
