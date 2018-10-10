@@ -29,4 +29,3 @@ export const clearLoader = () => {
     if (loader)
         loader.parentElement.removeChild(loader)
 };
-
