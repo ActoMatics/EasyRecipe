@@ -21,7 +21,9 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "axios": "^0.18.0",
-    "idempotent-babel-polyfill": "^6.26.0-1"
+    "fractional": "^1.0.0",
+    "idempotent-babel-polyfill": "^6.26.0-1",
+    "uniqid": "^5.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",

@@ -41,11 +41,13 @@ export default class Recipe {
         const newIngredients = this.ingredients.map(el => {
             //uniform units
             let ingredient = el.toLowerCase();
-            unitsLong.forEach(unit, i => ingredient = ingredient.replace(unit, unitsShort[i]));
-            
+            unitsLong.forEach((unit, i) => {
+                ingredient = ingredient.replace(unit, unitsShort[i]);
+            });
+
             //remove parentheses from the recipe obj
             ingredient = ingredient.replace(/ *\([^)]*\) */g, ' ');
-            
+
             // parse ingredients into count, unit and ingredients
             const arrIng = ingredient.split(' ');
             const unitIndex = arrIng.findIndex(el2 => units.includes(el2));
@@ -58,10 +60,10 @@ export default class Recipe {
                 const arrCount = arrIng.slice(0, unitIndex);
                 let count;
 
-                if (arrCount.length === 1)
-                    count = eval(arrIng[0].replace('-', '+'));
-                else {
-                    count = eval(arrIng.slice(0, unitIndex).join('+'));
+                if (arrCount.length === 1) {
+                    count = Number(eval(arrIng[0].replace('-', '+')).toFixed(1));
+                } else {
+                    count = Number(eval(arrIng.slice(0, unitIndex).join('+')).toFixed(1));
                 }
 
                 objIng = {
@@ -92,6 +94,27 @@ export default class Recipe {
         this.ingredients = newIngredients;
     }
 
-    
+
+
+    capDecimal(num) {
+        // Cap decimals to 5 digits and round, but don't add zeros to shorter decimals
+        if (typeof num === 'number') {
+            return +(Math.round(num + 'e+5') + 'e-5');
+        }
+    }
+
+    updateServings(type) {
+        // Servings
+        const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
+
+        // Ingredients
+        this.ingredients.forEach((ingr) => {
+            ingr.quantity = this.capDecimal(ingr.quantity * (newServings / this.servings));
+        });
+        this.servings = newServings;
+    }
+
+
+
 }
 

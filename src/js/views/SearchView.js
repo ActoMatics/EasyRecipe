@@ -10,6 +10,15 @@ export const clearResults = () => {
     elements.searchResPages.innerHTML = '';
 };
 
+
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.map( el => el.classList.remove('results__link--active'));
+
+    // selecting with css the attribute that has the same id as the url
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
+
 const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
 
