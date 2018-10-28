@@ -6,7 +6,7 @@ export const getInput = () => elements.searchInput.value;
 export const clearInput = () => { elements.searchInput.value = '' };
 
 export const clearResults = () => {
-    elements.searchResultList.innerHTML = '';
+    elements.searchResList.innerHTML = '';
     elements.searchResPages.innerHTML = '';
 };
 
@@ -50,7 +50,7 @@ const renderRecipe = recipe => {
     </li>
     `;
 
-    elements.searchResultList.insertAdjacentHTML("beforeend", markup)
+    elements.searchResList.insertAdjacentHTML("beforeend", markup)
 };
 
 /** @param page - nm of page

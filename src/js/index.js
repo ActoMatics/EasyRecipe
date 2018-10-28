@@ -1,7 +1,8 @@
 // Global app controller
 import Search from './models/Search';
-import * as searchView from './views/SearchView';
-import * as recipeView from './views/RecipeView';
+import * as searchView from './views/searchView';
+import * as recipeView from './views/recipeView';
+import * as listView from './views/listView';
 import { elements, renderLoader, clearLoader } from './views/base';
 import Recipe from './models/Recipe';
 import List from './models/List';
@@ -13,7 +14,7 @@ import List from './models/List';
  * - Liked recipes
  */
 const state = {};
-
+window.state = state;
 /**Search controller */
 const controlSearch = async () => {
     // get query from the view
@@ -105,8 +106,41 @@ const controlRecipe = async () => {
 
 };
 
+
 /**Recipe controller */
 ['hashchange', 'load'].map(event => window.addEventListener(event, controlRecipe));
+
+
+/**
+ * List controller
+ */
+const controlList = () => {
+    // create a new list if there is non yet
+    if (!state.list) state.list = new List();
+
+    // add each ingredients to the list and UI
+    state.recipe.ingredients.map(el => {
+        const item = state.list.addItem(el.count, el.unit, el.ingredient);
+        listView.renderItem(item);
+    });
+}
+
+// Handle delete and update list item events
+elements.shopping.addEventListener('click', e => {
+    const id  = e.target.closest('.shopping__item').dataset.itemid;
+
+    //Handle the delete button
+    if (e.target.matches('.shopping__delete, .shopping__delete *')) {
+        // delete from the state
+        state.list.deleteItem(id);
+
+        //delete from the UI
+        listView.deleteItem(id);
+    } else if (e.target.matches('.shopping__count-value')) {
+        const val = parseFloat(e.target.value, 10);
+    }
+});
+
 
 
 // Handling recipe button clicks
@@ -122,6 +156,8 @@ elements.recipe.addEventListener('click', e => {
         // Increase btn is clicked
         state.recipe.updateServings('inc');
         recipeView.updateServingIngredients(state.recipe);
+    } else if (e.target.matches('.recipe__btn--add, recipe__btn--add *')) {
+        controlList();
     }
     // console.log(state.recipe);
 });

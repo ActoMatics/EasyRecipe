@@ -94,8 +94,7 @@ export default class Recipe {
         this.ingredients = newIngredients;
     }
 
-
-
+    
     capDecimal(num) {
         // Cap decimals to 5 digits and round, but don't add zeros to shorter decimals
         if (typeof num === 'number') {
@@ -108,13 +107,11 @@ export default class Recipe {
         const newServings = type === 'dec' ? this.servings - 1 : this.servings + 1;
 
         // Ingredients
-        this.ingredients.forEach((ingr) => {
-            ingr.quantity = this.capDecimal(ingr.quantity * (newServings / this.servings));
+        this.ingredients.forEach(ingr => {
+            ingr.count = this.capDecimal(ingr.count * (newServings / this.servings));
         });
         this.servings = newServings;
     }
-
-
 
 }
 
