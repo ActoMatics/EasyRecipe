@@ -10,26 +10,22 @@ export const elements = {
     likesList: document.querySelector('.likes__list')
 };
 
-export const elementsStrings = {
+export const elementStrings = {
     loader: 'loader'
 };
 
 export const renderLoader = parent => {
     const loader = `
-        <div class="${elementsStrings.loader}">
+        <div class="${elementStrings.loader}">
             <svg>
                 <use href="img/icons.svg#icon-cw"></use>
             </svg>
         </div>
-        `
+    `;
     parent.insertAdjacentHTML('afterbegin', loader);
 };
 
-
 export const clearLoader = () => {
-    const loader = document.querySelector(`.${elementsStrings.loader}`);
-   
-    // in order to remove an el in html you must go up to the parent and remove the child afterwards
-    if (loader)
-        loader.parentElement.removeChild(loader)
+    const loader = document.querySelector(`.${elementStrings.loader}`);
+    if (loader) loader.parentElement.removeChild(loader);
 };
