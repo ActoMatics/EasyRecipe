@@ -7,7 +7,7 @@
     "dev": "webpack --mode development",
     "start": "webpack --mode production",
     "build": "webpack-dev-server --mode development --open",
-    "heroku-postbuild": "webpack -p" 
+    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
     "type": "git",
