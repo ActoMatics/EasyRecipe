@@ -7,7 +7,6 @@
     "dev": "webpack --mode development",
     "start": "webpack --mode production",
     "build": "webpack-dev-server --mode development --open",
-    "prestart": "next build",
     "postinstall": "npm run build"
   },
   "repository": {
