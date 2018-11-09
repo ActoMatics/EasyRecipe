@@ -7,7 +7,6 @@
     "dev": "webpack --mode development",
     "start": "webpack --mode production",
     "build": "webpack-dev-server --mode development --open",
-    "postinstall": "webpack -p --config ./webpack.prod.config.js --progress"
   },
   "repository": {
     "type": "git",
